@@ -26,11 +26,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var timer: Timer?
     var minutesLeftString = ""
     var secondsLeftString = ""
+    var darkMode = false
+    var timerRunningImage: NSImage?
+    var timerStoppedImage: NSImage?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
-        statusItem.button?.image = NSImage(named: "AppIcon")
-        statusItem.button?.imageScaling = NSImageScaling.scaleProportionallyDown
+        let appearance = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") ?? "Light"
+        darkMode = (appearance == "Dark")
+
+        timerStoppedImage = darkMode ? NSImage(named: "AppIconDark") : NSImage(named: "AppIcon")
+        timerRunningImage = darkMode ? NSImage(named: "TimerRunningDark") : NSImage(named: "TimerRunning")
+
+        updateTimerIcon()
 
         // Menu
         let menu = NSMenu()
@@ -124,6 +131,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func startStopTimer() {
         isTimerRunning = !isTimerRunning
         isTimerRunning ? startTimer() : stopTimer()
+        updateTimerIcon()
     }
 
     private func startTimer() {
@@ -146,6 +154,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         timer?.invalidate()
         timer = nil
     }
+
+    private func updateTimerIcon() {
+        statusItem.button?.image = isTimerRunning ? timerRunningImage : timerStoppedImage
+        statusItem.button?.imageScaling = NSImageScaling.scaleProportionallyDown
+    }
+
 
     func timerUpdate() {
         timeRemainingInSeconds -= 1
