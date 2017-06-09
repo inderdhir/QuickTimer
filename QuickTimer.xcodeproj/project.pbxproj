@@ -7,17 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2021AAEF1EDE1B2B00353860 /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2021AAEE1EDE1B2B00353860 /* EventMonitor.swift */; };
+		2024CBEC1EEA3CC900EE7D38 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2024CBEB1EEA3CC900EE7D38 /* Assets.xcassets */; };
 		20DE14401ED6801200CF175F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE143F1ED6801200CF175F /* AppDelegate.swift */; };
 		20DE14421ED6801200CF175F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE14411ED6801200CF175F /* ViewController.swift */; };
-		20DE14441ED6801200CF175F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20DE14431ED6801200CF175F /* Assets.xcassets */; };
 		20DE14471ED6801200CF175F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20DE14451ED6801200CF175F /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2021AAEE1EDE1B2B00353860 /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
+		2024CBEB1EEA3CC900EE7D38 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20DE143C1ED6801200CF175F /* QuickTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20DE143F1ED6801200CF175F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20DE14411ED6801200CF175F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		20DE14431ED6801200CF175F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		20DE14461ED6801200CF175F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		20DE14481ED6801200CF175F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,11 +54,12 @@
 		20DE143E1ED6801200CF175F /* QuickTimer */ = {
 			isa = PBXGroup;
 			children = (
+				2024CBEB1EEA3CC900EE7D38 /* Assets.xcassets */,
 				20DE143F1ED6801200CF175F /* AppDelegate.swift */,
 				20DE14411ED6801200CF175F /* ViewController.swift */,
-				20DE14431ED6801200CF175F /* Assets.xcassets */,
 				20DE14451ED6801200CF175F /* Main.storyboard */,
 				20DE14481ED6801200CF175F /* Info.plist */,
+				2021AAEE1EDE1B2B00353860 /* EventMonitor.swift */,
 			);
 			path = QuickTimer;
 			sourceTree = "<group>";
@@ -121,7 +124,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				20DE14441ED6801200CF175F /* Assets.xcassets in Resources */,
+				2024CBEC1EEA3CC900EE7D38 /* Assets.xcassets in Resources */,
 				20DE14471ED6801200CF175F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -133,6 +136,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2021AAEF1EDE1B2B00353860 /* EventMonitor.swift in Sources */,
 				20DE14421ED6801200CF175F /* ViewController.swift in Sources */,
 				20DE14401ED6801200CF175F /* AppDelegate.swift in Sources */,
 			);
@@ -248,12 +252,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = Q8X4D3A8MT;
 				INFOPLIST_FILE = QuickTimer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.inderdhir.QuickTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -262,12 +268,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = Q8X4D3A8MT;
 				INFOPLIST_FILE = QuickTimer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.inderdhir.QuickTimer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -291,6 +299,7 @@
 				20DE144D1ED6801200CF175F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
