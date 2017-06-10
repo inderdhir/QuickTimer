@@ -157,6 +157,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func terminate() {
+        NSApp.terminate(self)
     }
 }
 
