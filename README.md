@@ -7,4 +7,4 @@ Simple timer menu bar app for macOS
 
 [Time icon credits](https://icons8.com/icon/18784/Time)
 
-[Download latest release](https://github.com/inderdhir/DatWeatherDoe/releases/latest)
+[Download latest release](https://github.com/inderdhir/QuickTimer/releases/latest)
