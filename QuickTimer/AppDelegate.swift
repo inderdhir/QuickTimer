@@ -9,7 +9,7 @@
 import Cocoa
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
 
     let statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
     let startStopMenuItem = NSMenuItem(title: "Start", action: #selector(startStopTimer), keyEquivalent: "S")
@@ -20,6 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var fifteenMinuteMenuItem: NSMenuItem?
     var thirtyMinuteMenuItem: NSMenuItem?
     var sixtyMinuteMenuItem: NSMenuItem?
+    var selectedTimeInSeconds = 1
     var timeRemainingInSeconds = 1
     var timer: Timer?
     var minutesLeftString = ""
@@ -71,6 +72,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
 
+    // MARK: Selectors
 
     func timer1() {
         timer(1)
@@ -96,22 +98,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         var selectedIndex = 0
         switch time {
         case 1:
-            timeRemainingInSeconds = 60
+            selectedTimeInSeconds = 60
         case 5:
             selectedIndex = 1
-            timeRemainingInSeconds = 120
+            selectedTimeInSeconds = 120
         case 15:
             selectedIndex = 2
-            timeRemainingInSeconds = 900
+            selectedTimeInSeconds = 120
         case 30:
             selectedIndex = 3
-            timeRemainingInSeconds = 1800
+            selectedTimeInSeconds = 120
         case 60:
             selectedIndex = 4
-            timeRemainingInSeconds = 3600
+            selectedTimeInSeconds = 120
         default:
             break
         }
+        timeRemainingInSeconds = selectedTimeInSeconds
 
         for (index, menuItem) in timeMenuItems!.enumerated() {
             menuItem.state = index == selectedIndex ? NSOnState : NSOffState
@@ -122,6 +125,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         isTimerRunning = !isTimerRunning
         isTimerRunning ? startTimer() : stopTimer()
     }
+
+    func timerUpdate() {
+        timeRemainingInSeconds -= 1
+        if timeRemainingInSeconds == 0 {
+            timeRemainingInSeconds = selectedTimeInSeconds
+
+            stopTimer()
+            displayNotification()
+        }
+        else {
+            minutesLeftString = String(format: "%02d", timeRemainingInSeconds / 60)
+            secondsLeftString = String(timeRemainingInSeconds % 60)
+            startStopMenuItem.title = "Stop (\(minutesLeftString):\(secondsLeftString))"
+        }
+    }
+
+    func terminate() {
+        NSApp.terminate(self)
+    }
+
+    // MARK: Private methods
 
     private func startTimer() {
         startStopMenuItem.title = "Stop"
@@ -144,20 +168,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         timer = nil
     }
 
-    func timerUpdate() {
-        timeRemainingInSeconds -= 1
-        if timeRemainingInSeconds == 0 {
-            stopTimer()
-        }
-        else {
-            minutesLeftString = String(format: "%02d", timeRemainingInSeconds / 60)
-            secondsLeftString = String(timeRemainingInSeconds % 60)
-            startStopMenuItem.title = "Stop (\(minutesLeftString):\(secondsLeftString))"
-        }
+    private func displayNotification() {
+        let notification = NSUserNotification()
+        notification.title = "It's time!"
+        notification.soundName = NSUserNotificationDefaultSoundName
+        NSUserNotificationCenter.default.deliver(notification)
     }
 
-    func terminate() {
-        NSApp.terminate(self)
+
+    // MARK: NSUserNotificationCenterDelegate
+
+    public func userNotificationCenter(_ center: NSUserNotificationCenter,
+                                                  shouldPresent notification: NSUserNotification) -> Bool {
+        return true
     }
 }
 
