@@ -16,18 +16,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var timeMenuItems: [NSMenuItem]?
     var isTimerRunning = false
     var oneMinuteMenuItem: NSMenuItem?
-    var twoMinuteMenuItem: NSMenuItem?
     var fiveMinuteMenuItem: NSMenuItem?
+    var fifteenMinuteMenuItem: NSMenuItem?
+    var thirtyMinuteMenuItem: NSMenuItem?
+    var sixtyMinuteMenuItem: NSMenuItem?
     var timeRemainingInSeconds = 1
     var timer: Timer?
     var minutesLeftString = ""
     var secondsLeftString = ""
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        let appearance = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") ?? "Light"
-        let darkMode = (appearance == "Dark")
-
-        statusItem.button?.image = darkMode ?
+        statusItem.button?.image = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") == "Dark" ?
             NSImage(named: "AppIconDark") : NSImage(named:"AppIcon")
         statusItem.button?.imageScaling = NSImageScaling.scaleProportionallyDown
 
@@ -41,21 +40,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         oneMinuteMenuItem?.state = NSOnState
         oneMinuteMenuItem?.isEnabled = true
         timeRemainingInSeconds = 60
-
-        twoMinuteMenuItem = NSMenuItem(title: "2 min", action: #selector(timer2), keyEquivalent: "2")
-        twoMinuteMenuItem?.isEnabled = true
-
-        fiveMinuteMenuItem = NSMenuItem(title: "5 min", action: #selector(timer5), keyEquivalent: "5")
+        fiveMinuteMenuItem = NSMenuItem(title: "5 min", action: #selector(timer5), keyEquivalent: "2")
         fiveMinuteMenuItem?.isEnabled = true
+        fifteenMinuteMenuItem = NSMenuItem(title: "15 min", action: #selector(timer15), keyEquivalent: "3")
+        fifteenMinuteMenuItem?.isEnabled = true
+        thirtyMinuteMenuItem = NSMenuItem(title: "30 min", action: #selector(timer30), keyEquivalent: "4")
+        thirtyMinuteMenuItem?.isEnabled = true
+        sixtyMinuteMenuItem = NSMenuItem(title: "60 min", action: #selector(timer60), keyEquivalent: "5")
+        sixtyMinuteMenuItem?.isEnabled = true
 
         timeMenuItems = [NSMenuItem]()
         timeMenuItems?.append(oneMinuteMenuItem!)
-        timeMenuItems?.append(twoMinuteMenuItem!)
         timeMenuItems?.append(fiveMinuteMenuItem!)
+        timeMenuItems?.append(fifteenMinuteMenuItem!)
+        timeMenuItems?.append(thirtyMinuteMenuItem!)
+        timeMenuItems?.append(sixtyMinuteMenuItem!)
 
         menu.addItem(oneMinuteMenuItem!)
-        menu.addItem(twoMinuteMenuItem!)
         menu.addItem(fiveMinuteMenuItem!)
+        menu.addItem(fifteenMinuteMenuItem!)
+        menu.addItem(thirtyMinuteMenuItem!)
+        menu.addItem(sixtyMinuteMenuItem!)
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(terminate), keyEquivalent: "q"))
 
@@ -71,36 +76,45 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         timer(1)
     }
 
-    func timer2() {
-        timer(2)
-    }
-
     func timer5() {
         timer(5)
     }
 
+    func timer15() {
+        timer(15)
+    }
+
+    func timer30() {
+        timer(30)
+    }
+
+    func timer60() {
+        timer(60)
+    }
+
     func timer(_ time: Int){
+        var selectedIndex = 0
         switch time {
         case 1:
-            oneMinuteMenuItem?.state = NSOnState
-            twoMinuteMenuItem?.state = NSOffState
-            fiveMinuteMenuItem?.state = NSOffState
-
             timeRemainingInSeconds = 60
-        case 2:
-            oneMinuteMenuItem?.state = NSOffState
-            twoMinuteMenuItem?.state = NSOnState
-            fiveMinuteMenuItem?.state = NSOffState
-
-            timeRemainingInSeconds = 120
         case 5:
-            oneMinuteMenuItem?.state = NSOffState
-            twoMinuteMenuItem?.state = NSOffState
-            fiveMinuteMenuItem?.state = NSOnState
-
-            timeRemainingInSeconds = 300
+            selectedIndex = 1
+            timeRemainingInSeconds = 120
+        case 15:
+            selectedIndex = 2
+            timeRemainingInSeconds = 900
+        case 30:
+            selectedIndex = 3
+            timeRemainingInSeconds = 1800
+        case 60:
+            selectedIndex = 4
+            timeRemainingInSeconds = 3600
         default:
             break
+        }
+
+        for (index, menuItem) in timeMenuItems!.enumerated() {
+            menuItem.state = index == selectedIndex ? NSOnState : NSOffState
         }
     }
 
@@ -143,7 +157,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func terminate() {
-
     }
 }
 
