@@ -11,6 +11,7 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
+    let statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
     let startStopMenuItem = NSMenuItem(title: "Start", action: #selector(startStopTimer), keyEquivalent: "S")
     var timeMenuItems: [NSMenuItem]?
     var isTimerRunning = false
@@ -26,7 +27,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let appearance = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") ?? "Light"
         let darkMode = (appearance == "Dark")
 
-        let statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
         statusItem.button?.image = darkMode ?
             NSImage(named: "AppIconDark") : NSImage(named:"AppIcon")
         statusItem.button?.imageScaling = NSImageScaling.scaleProportionallyDown
