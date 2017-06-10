@@ -27,17 +27,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var minutesLeftString = ""
     var secondsLeftString = ""
     var darkMode = false
-    var timerRunningImage: NSImage?
-    var timerStoppedImage: NSImage?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         let appearance = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") ?? "Light"
         darkMode = (appearance == "Dark")
 
-        timerStoppedImage = darkMode ? NSImage(named: "AppIconDark") : NSImage(named: "AppIcon")
-        timerRunningImage = darkMode ? NSImage(named: "TimerRunningDark") : NSImage(named: "TimerRunning")
-
-        updateTimerIcon()
+        statusItem.button?.image = darkMode ?
+            NSImage(named: "AppIconDark") : NSImage(named:"AppIcon")
+        statusItem.button?.imageScaling = NSImageScaling.scaleProportionallyDown
 
         // Menu
         let menu = NSMenu()
@@ -70,14 +67,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(terminate), keyEquivalent: "q"))
 
         statusItem.menu = menu
-
-        // Event monitor to listen for clicks outside the popover
-        eventMonitor = EventMonitor(mask: NSEventMask.leftMouseDown) { [unowned self] event in
-            if self.popover.isShown {
-                self.closePopover(event)
-            }
-        }
-        eventMonitor?.start()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -131,7 +120,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func startStopTimer() {
         isTimerRunning = !isTimerRunning
         isTimerRunning ? startTimer() : stopTimer()
-        updateTimerIcon()
     }
 
     private func startTimer() {
@@ -155,12 +143,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         timer = nil
     }
 
-    private func updateTimerIcon() {
-        statusItem.button?.image = isTimerRunning ? timerRunningImage : timerStoppedImage
-        statusItem.button?.imageScaling = NSImageScaling.scaleProportionallyDown
-    }
-
-
     func timerUpdate() {
         timeRemainingInSeconds -= 1
         if timeRemainingInSeconds == 0 {
@@ -175,26 +157,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func terminate() {
 
-    }
-
-    func showPopover(_ sender: AnyObject?) {
-        if let button = statusItem.button {
-            popover.show(relativeTo: button.bounds, of: button, preferredEdge: NSRectEdge.minY)
-        }
-        eventMonitor?.start()
-    }
-
-    func closePopover(_ sender: AnyObject?) {
-        popover.performClose(sender)
-        eventMonitor?.stop()
-    }
-
-    func togglePopover(_ sender: AnyObject?) {
-        if popover.isShown {
-            closePopover(sender)
-        } else {
-            showPopover(sender)
-        }
     }
 }
 
