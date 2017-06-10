@@ -10,7 +10,6 @@
 		20016D0F1EEB624F00210CC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20016D0E1EEB624F00210CC7 /* Assets.xcassets */; };
 		2021AAEF1EDE1B2B00353860 /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2021AAEE1EDE1B2B00353860 /* EventMonitor.swift */; };
 		20DE14401ED6801200CF175F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE143F1ED6801200CF175F /* AppDelegate.swift */; };
-		20DE14421ED6801200CF175F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE14411ED6801200CF175F /* ViewController.swift */; };
 		20DE14471ED6801200CF175F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20DE14451ED6801200CF175F /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -19,7 +18,6 @@
 		2021AAEE1EDE1B2B00353860 /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		20DE143C1ED6801200CF175F /* QuickTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20DE143F1ED6801200CF175F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		20DE14411ED6801200CF175F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		20DE14461ED6801200CF175F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		20DE14481ED6801200CF175F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -56,7 +54,6 @@
 			children = (
 				20016D0E1EEB624F00210CC7 /* Assets.xcassets */,
 				20DE143F1ED6801200CF175F /* AppDelegate.swift */,
-				20DE14411ED6801200CF175F /* ViewController.swift */,
 				20DE14451ED6801200CF175F /* Main.storyboard */,
 				20DE14481ED6801200CF175F /* Info.plist */,
 				2021AAEE1EDE1B2B00353860 /* EventMonitor.swift */,
@@ -137,7 +134,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				2021AAEF1EDE1B2B00353860 /* EventMonitor.swift in Sources */,
-				20DE14421ED6801200CF175F /* ViewController.swift in Sources */,
 				20DE14401ED6801200CF175F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
