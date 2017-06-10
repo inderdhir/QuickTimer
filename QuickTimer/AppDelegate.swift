@@ -11,27 +11,22 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-    let statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
-    let popover = NSPopover()
     let startStopMenuItem = NSMenuItem(title: "Start", action: #selector(startStopTimer), keyEquivalent: "S")
-    var eventMonitor: EventMonitor?
     var timeMenuItems: [NSMenuItem]?
     var isTimerRunning = false
     var oneMinuteMenuItem: NSMenuItem?
     var twoMinuteMenuItem: NSMenuItem?
     var fiveMinuteMenuItem: NSMenuItem?
     var timeRemainingInSeconds = 1
-    var currentSelectedTime: Int?
-    var currentSelectedInterval: TimeInterval?
     var timer: Timer?
     var minutesLeftString = ""
     var secondsLeftString = ""
-    var darkMode = false
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         let appearance = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") ?? "Light"
-        darkMode = (appearance == "Dark")
+        let darkMode = (appearance == "Dark")
 
+        let statusItem = NSStatusBar.system().statusItem(withLength: NSSquareStatusItemLength)
         statusItem.button?.image = darkMode ?
             NSImage(named: "AppIconDark") : NSImage(named:"AppIcon")
         statusItem.button?.imageScaling = NSImageScaling.scaleProportionallyDown
@@ -45,8 +40,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         oneMinuteMenuItem = NSMenuItem(title: "1 min", action: #selector(timer1), keyEquivalent: "1")
         oneMinuteMenuItem?.state = NSOnState
         oneMinuteMenuItem?.isEnabled = true
-        currentSelectedTime = 1
-        currentSelectedInterval = 60
         timeRemainingInSeconds = 60
 
         twoMinuteMenuItem = NSMenuItem(title: "2 min", action: #selector(timer2), keyEquivalent: "2")
@@ -93,24 +86,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             twoMinuteMenuItem?.state = NSOffState
             fiveMinuteMenuItem?.state = NSOffState
 
-            currentSelectedTime = 1
-            currentSelectedInterval = 60
             timeRemainingInSeconds = 60
         case 2:
             oneMinuteMenuItem?.state = NSOffState
             twoMinuteMenuItem?.state = NSOnState
             fiveMinuteMenuItem?.state = NSOffState
 
-            currentSelectedTime = 2
-            currentSelectedInterval = 120
             timeRemainingInSeconds = 120
         case 5:
             oneMinuteMenuItem?.state = NSOffState
             twoMinuteMenuItem?.state = NSOffState
             fiveMinuteMenuItem?.state = NSOnState
 
-            currentSelectedTime = 5
-            currentSelectedInterval = 300
             timeRemainingInSeconds = 300
         default:
             break
