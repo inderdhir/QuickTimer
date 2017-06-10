@@ -20,8 +20,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     var fifteenMinuteMenuItem: NSMenuItem?
     var thirtyMinuteMenuItem: NSMenuItem?
     var sixtyMinuteMenuItem: NSMenuItem?
-    var selectedTimeInSeconds = 1
-    var timeRemainingInSeconds = 1
+    var selectedTimeInSeconds = 60
+    var timeRemainingInSeconds = 60
     var timer: Timer?
     var minutesLeftString = ""
     var secondsLeftString = ""
@@ -40,7 +40,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         oneMinuteMenuItem = NSMenuItem(title: "1 min", action: #selector(timer1), keyEquivalent: "1")
         oneMinuteMenuItem?.state = NSOnState
         oneMinuteMenuItem?.isEnabled = true
-        timeRemainingInSeconds = 60
         fiveMinuteMenuItem = NSMenuItem(title: "5 min", action: #selector(timer5), keyEquivalent: "2")
         fiveMinuteMenuItem?.isEnabled = true
         fifteenMinuteMenuItem = NSMenuItem(title: "15 min", action: #selector(timer15), keyEquivalent: "3")
@@ -101,16 +100,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             selectedTimeInSeconds = 60
         case 5:
             selectedIndex = 1
-            selectedTimeInSeconds = 120
+            selectedTimeInSeconds = 300
         case 15:
             selectedIndex = 2
-            selectedTimeInSeconds = 120
+            selectedTimeInSeconds = 900
         case 30:
             selectedIndex = 3
-            selectedTimeInSeconds = 120
+            selectedTimeInSeconds = 1800
         case 60:
             selectedIndex = 4
-            selectedTimeInSeconds = 120
+            selectedTimeInSeconds = 3600
         default:
             break
         }
@@ -129,10 +128,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     func timerUpdate() {
         timeRemainingInSeconds -= 1
         if timeRemainingInSeconds == 0 {
-            timeRemainingInSeconds = selectedTimeInSeconds
-
             stopTimer()
             displayNotification()
+
+            timeRemainingInSeconds = selectedTimeInSeconds
         }
         else {
             minutesLeftString = String(format: "%02d", timeRemainingInSeconds / 60)
