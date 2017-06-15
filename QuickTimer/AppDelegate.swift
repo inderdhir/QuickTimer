@@ -135,7 +135,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         }
         else {
             minutesLeftString = String(format: "%02d", timeRemainingInSeconds / 60)
-            secondsLeftString = String(timeRemainingInSeconds % 60)
+            secondsLeftString = String(format: "%02d", timeRemainingInSeconds % 60)
             startStopMenuItem.title = "Stop (\(minutesLeftString):\(secondsLeftString))"
         }
     }
