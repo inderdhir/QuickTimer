@@ -5,6 +5,6 @@ Simple timer menu bar app for macOS
 
 ![alt tag](https://user-images.githubusercontent.com/2235307/27006636-11db9954-4e07-11e7-9dae-b8ce11f83552.png)
 
-[Time icon credits](https://icons8.com/icon/18784/Time)
+[Time icon credit](https://icons8.com/icon/18784/Time)
 
 [Download latest release](https://github.com/inderdhir/QuickTimer/releases/latest)
