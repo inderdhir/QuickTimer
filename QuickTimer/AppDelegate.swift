@@ -20,9 +20,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     var timer: Timer?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        statusItem.button?.image = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") == "Dark" ?
-            NSImage(named: "AppIcon-2") :
-            NSImage(named: "AppIcon")
+        let image = NSImage(named: "AppIcon")
+        image?.isTemplate = true
+        statusItem.button?.image = image
         statusItem.button?.imageScaling = .scaleProportionallyDown
 
         // Menu
