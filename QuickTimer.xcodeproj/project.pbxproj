@@ -8,14 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		20016D0F1EEB624F00210CC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20016D0E1EEB624F00210CC7 /* Assets.xcassets */; };
-		2021AAEF1EDE1B2B00353860 /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2021AAEE1EDE1B2B00353860 /* EventMonitor.swift */; };
+		207572EF297DE211001E965C /* TimerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207572EE297DE211001E965C /* TimerModel.swift */; };
+		207572F1297DEAC8001E965C /* NotificationCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207572F0297DEAC8001E965C /* NotificationCreator.swift */; };
 		20DE14401ED6801200CF175F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20DE143F1ED6801200CF175F /* AppDelegate.swift */; };
 		20DE14471ED6801200CF175F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 20DE14451ED6801200CF175F /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		20016D0E1EEB624F00210CC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2021AAEE1EDE1B2B00353860 /* EventMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
+		207572EE297DE211001E965C /* TimerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerModel.swift; sourceTree = "<group>"; };
+		207572F0297DEAC8001E965C /* NotificationCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCreator.swift; sourceTree = "<group>"; };
 		20DE143C1ED6801200CF175F /* QuickTimer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuickTimer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		20DE143F1ED6801200CF175F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		20DE14461ED6801200CF175F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -56,7 +58,8 @@
 				20DE143F1ED6801200CF175F /* AppDelegate.swift */,
 				20DE14451ED6801200CF175F /* Main.storyboard */,
 				20DE14481ED6801200CF175F /* Info.plist */,
-				2021AAEE1EDE1B2B00353860 /* EventMonitor.swift */,
+				207572EE297DE211001E965C /* TimerModel.swift */,
+				207572F0297DEAC8001E965C /* NotificationCreator.swift */,
 			);
 			path = QuickTimer;
 			sourceTree = "<group>";
@@ -133,8 +136,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2021AAEF1EDE1B2B00353860 /* EventMonitor.swift in Sources */,
+				207572EF297DE211001E965C /* TimerModel.swift in Sources */,
 				20DE14401ED6801200CF175F /* AppDelegate.swift in Sources */,
+				207572F1297DEAC8001E965C /* NotificationCreator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
